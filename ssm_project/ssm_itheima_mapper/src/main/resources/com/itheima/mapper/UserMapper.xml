@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.UserMapper">
+    <resultMap id="userInfoMap" type="userInfo" >
+        <id property="id" column="id"></id>
+        <collection property="roles" column="id" ofType="role" fetchType="lazy" select="com.itheima.mapper.RoleMapper.findByUserId"></collection>
+    </resultMap>
+    <!--查询所有用户-->
+    <select id="findAll" parameterType="String" resultType="userInfo">
+        SELECT * FROM users
+        <where>
+             username like '%${value}%' OR phoneNum like '%${value}%' OR email like '%${value}%'
+        </where>
+    </select>
+    <!--添加用户-->
+    <insert id="save" parameterType="userInfo">
+        INSERT INTO users(email,username,password,phonenum,status) VALUES(#{email},#{username},#{password},#{phoneNum},#{status})
+    </insert>
+    <!--根据用户名称查询用户及其角色-->
+    <select id="findByUsername" parameterType="String" resultMap="userInfoMap">
+        SELECT * FROM users WHERE username=#{username}
+    </select>
+    <!--根据用户id查询用户及其角色和角色对应的权限路径-->
+    <select id="findById" parameterType="String" resultMap="userInfoMap">
+        SELECT * FROM users WHERE id=#{id}
+    </select>
+</mapper>
