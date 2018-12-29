@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
+
     @Autowired
     private RoleMapper roleMapper;
     @Override
@@ -26,5 +27,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void save(Role role) throws Exception {
         roleMapper.save(role);
+    }
+
+    @Override
+    public List<Role> findRolesByUserId(String id) throws Exception{
+        return roleMapper.findByUserId(id);
     }
 }

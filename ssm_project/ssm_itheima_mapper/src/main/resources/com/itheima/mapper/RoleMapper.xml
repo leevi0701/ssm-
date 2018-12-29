@@ -3,10 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.mapper.RoleMapper">
+    <resultMap id="roleMap" type="role">
+        <id property="id" column="id"></id>
+        <collection property="permissions" column="id" ofType="permission" fetchType="lazy"
+                    select="com.itheima.mapper.PermissionMapper.findByRoleId"></collection>
+    </resultMap>
     <!--不需要传递参数,userId(可随意写)是UserMapper.xml中<collection property="roles" column="id"
       ofType="role" fetchType="lazy"
     select="com.itheima.mapper.RoleMapper.findByUserId"></collection>的column对应的id值 -->
-    <select id="findByUserId"  resultType="role" >
+    <select id="findByUserId" parameterType="String" resultMap="roleMap" ><!--PA-->
         SELECT * FROM role WHERE id in ( SELECT roleid from users_role WHERE userid=#{userid} )
     </select>
 

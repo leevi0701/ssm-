@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface RoleMapper {
 
-    List<Role> findByUserId() throws Exception;
+    List<Role> findByUserId(String id) throws Exception;
 
     List<Role> findAll() throws Exception;
 

@@ -7,4 +7,9 @@
     <select id="findAll" resultType="permission">
         SELECT * FROM permission
     </select>
+
+    <!---->
+    <select id="findByRoleId" resultType="permission">
+        SELECT * FROM permission WHERE id IN ( SELECT permissionId FROM role_permission WHERE roleId=#{roleId})
+    </select>
 </mapper>

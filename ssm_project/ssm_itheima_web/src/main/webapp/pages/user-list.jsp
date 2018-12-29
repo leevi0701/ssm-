@@ -161,7 +161,9 @@
                                     <td class="text-center">
                                         <a href="${pageContext.request.contextPath}/user/findById?id=${user.id}"
                                            class="btn bg-olive btn-xs">详情</a>
-                                        <a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole.do?id=${user.id}"
+                                        <a href="${pageContext.request.contextPath}/user/findUpdateUserById?id=${user.id}"
+                                           class="btn bg-olive btn-xs">修改用户</a>
+                                        <a href="${pageContext.request.contextPath}/user/findRolesByUserId?id=${user.id}"
                                            class="btn bg-olive btn-xs">修改角色</a>
                                     </td>
                                 </tr>

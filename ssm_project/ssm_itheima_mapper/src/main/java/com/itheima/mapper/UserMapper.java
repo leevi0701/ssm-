@@ -18,4 +18,6 @@ public interface UserMapper {
     void save(UserInfo userInfo) throws Exception;
 
     UserInfo findById(String id) throws Exception;
+
+    void update(UserInfo userInfo) throws Exception;
 }

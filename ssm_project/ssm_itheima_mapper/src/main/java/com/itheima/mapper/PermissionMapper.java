@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface PermissionMapper {
 
+    List<Permission> findByRoleId() throws Exception;
+
     List<Permission> findAll() throws Exception;
 }
